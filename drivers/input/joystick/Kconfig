@@ -422,4 +422,24 @@ config JOYSTICK_SEESAW
 	  To compile this driver as a module, choose M here: the module will be
 	  called adafruit-seesaw.
 
+config JOYSTICK_NGC
+	tristate "Nintendo GameCube adapter support"
+	depends on USB_ARCH_HAS_HCD
+	select USB
+	help
+	  Say Y here if you want to use Nintendo GameCube adapter with
+	  your computer.
+	  Make sure to say Y to "Joystick support" (CONFIG_INPUT_JOYDEV)
+	  and/or "Event interface support" (CONFIG_INPUT_EVDEV) as well.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called gamecube_adapter.
+
+config JOYSTICK_NGC_FF
+	bool "Nintendo GameCube adapter rumble support"
+	depends on JOYSTICK_NGC && INPUT
+	select INPUT_FF_MEMLESS
+	help
+	  Say Y here if you want to take advantage of GameCube controller rumble features.
+
 endif
